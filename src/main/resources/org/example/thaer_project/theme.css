@@ -1,0 +1,526 @@
+/* ==========================================
+   STUDYFLOW - TASK MANAGER DESIGN
+   JavaFX 21
+   ========================================== */
+
+/* OUTER BACKGROUND */
+.app-background {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #254C9D,
+            #60419B 52%,
+            #17264D
+    );
+    -fx-padding: 26px;
+    -fx-font-family: "Segoe UI";
+}
+
+/* MAIN FRAME: padding keeps child panes away from the rounded corners */
+.app-shell {
+    -fx-background-color: #0D1428;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-color: #6875B0;
+    -fx-border-width: 1.2px;
+    /* Keep child panes away from the rounded outer frame */
+    -fx-padding: 9px;
+}
+
+/* SIDEBAR */
+.sidebar {
+    -fx-background-color: #111B34;
+    -fx-background-radius: 17px 0 0 17px;
+    -fx-border-radius: 17px 0 0 17px;
+    -fx-padding: 18px 13px 14px 13px;
+}
+
+/* BRAND */
+.brand-block {
+    -fx-padding: 5px 8px 7px 8px;
+}
+.brand-title {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+.brand-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9EACCE;
+}
+.sidebar-caption {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8798BE;
+    -fx-padding: 0 8px 0 0;
+}
+
+/* NAVIGATION SCROLLPANE */
+.nav-scroll,
+.page-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.nav-scroll > .viewport,
+.page-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+.nav-scroll .corner,
+.page-scroll .corner {
+    -fx-background-color: transparent;
+}
+
+/* SCROLLBARS - applies to both the sidebar and main page */
+.nav-scroll .scroll-bar:vertical,
+.page-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
+    -fx-padding: 2px 1px 2px 1px;
+}
+
+.nav-scroll .scroll-bar:vertical .track,
+.page-scroll .scroll-bar:vertical .track {
+    -fx-background-color: rgba(120, 145, 195, 0.10);
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+}
+
+.nav-scroll .scroll-bar:vertical .thumb,
+.page-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #465B8B;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px;
+}
+
+.nav-scroll .scroll-bar:vertical .thumb:hover,
+.page-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7187C4;
+}
+
+.nav-scroll .scroll-bar:vertical .thumb:pressed,
+.page-scroll .scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: #8B9FE0;
+}
+
+.nav-scroll .scroll-bar:vertical .increment-button,
+.nav-scroll .scroll-bar:vertical .decrement-button,
+.page-scroll .scroll-bar:vertical .increment-button,
+.page-scroll .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-opacity: 0;
+}
+
+.nav-scroll .scroll-bar:vertical .increment-arrow,
+.nav-scroll .scroll-bar:vertical .decrement-arrow,
+.page-scroll .scroll-bar:vertical .increment-arrow,
+.page-scroll .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+
+/* If a horizontal scrollbar appears */
+.nav-scroll .scroll-bar:horizontal,
+.page-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 8px;
+}
+.nav-scroll .scroll-bar:horizontal .track,
+.page-scroll .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(120, 145, 195, 0.10);
+    -fx-background-radius: 8px;
+}
+.nav-scroll .scroll-bar:horizontal .thumb,
+.page-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #465B8B;
+    -fx-background-radius: 8px;
+}
+
+/* NAVIGATION GROUPS */
+.nav-group {
+    -fx-background-color: #17223D;
+    -fx-background-radius: 15px;
+    -fx-border-color: #2A3A5D;
+    -fx-border-radius: 15px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+}
+.nav-group-title {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9BACD2;
+    -fx-padding: 2px 5px 5px 0;
+}
+
+/* GENERAL BUTTON RESET */
+.button {
+    -fx-font-family: "Segoe UI";
+    -fx-background-insets: 0;
+    -fx-cursor: hand;
+}
+
+/* NAVIGATION BUTTONS */
+.button.nav-button {
+    -fx-background-color: #202E4B;
+    -fx-background-insets: 0;
+    -fx-background-radius: 11px;
+    -fx-border-color: #304265;
+    -fx-border-width: 1px;
+    -fx-border-radius: 11px;
+    -fx-text-fill: #C6D1E9;
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 9px 11px;
+    -fx-min-height: 38px;
+    -fx-pref-height: 40px;
+    -fx-max-width: Infinity;
+}
+.button.nav-button:hover {
+    -fx-background-color: #2D3F68;
+    -fx-border-color: #556DA5;
+    -fx-text-fill: white;
+}
+
+/* SELECTED PAGE: stronger selector ensures the selected button is not Modena white */
+.button.nav-button.nav-selected {
+    -fx-background-color: linear-gradient(to right, #4168E8, #7952D8);
+    -fx-background-insets: 0;
+    -fx-background-radius: 11px;
+    -fx-border-color: #8196FF;
+    -fx-border-width: 1px;
+    -fx-border-radius: 11px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.button.nav-button.nav-selected:hover {
+    -fx-background-color: linear-gradient(to right, #5278F5, #8964E5);
+    -fx-text-fill: white;
+}
+
+/* Explicit ID fallback for the current Task Manager navigation item.
+   This is intentionally more specific than the generic button rules. */
+#selectedTaskNav {
+    -fx-background-color: linear-gradient(to right, #4168E8, #7952D8);
+    -fx-background-insets: 0;
+    -fx-background-radius: 11px;
+    -fx-border-color: #91A5FF;
+    -fx-border-width: 1px;
+    -fx-border-radius: 11px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(75, 100, 235, 0.28), 9, 0.15, 0, 2);
+}
+#selectedTaskNav:hover {
+    -fx-background-color: linear-gradient(to right, #5278F5, #8964E5);
+    -fx-text-fill: white;
+}
+#selectedTaskNav:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* SIDEBAR FOOTER */
+.sidebar-footer {
+    -fx-background-color: #17233F;
+    -fx-background-radius: 14px;
+    -fx-border-color: #293B60;
+    -fx-border-radius: 14px;
+    -fx-padding: 10px;
+}
+.footer-account {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #A7B7D8;
+}
+.button.logout-button {
+    -fx-background-color: #392838;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #67465C;
+    -fx-text-fill: #F0B8C8;
+    -fx-font-size: 12px;
+    -fx-padding: 9px 11px;
+    -fx-alignment: CENTER_RIGHT;
+}
+.button.logout-button:hover {
+    -fx-background-color: #513447;
+}
+
+/* MAIN CONTENT */
+.content-area {
+    -fx-background-color: #0D1428;
+    -fx-background-radius: 0 17px 17px 0;
+    -fx-padding: 19px;
+}
+.page-header {
+    -fx-padding: 2px 2px 5px 2px;
+}
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F4F6FF;
+}
+.page-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9BAACB;
+}
+.header-chip {
+    -fx-background-color: #1E2D50;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 10px;
+    -fx-text-fill: #C2D0F0;
+}
+.page-body {
+    -fx-padding: 2px 2px 8px 2px;
+}
+
+/* FORM AND LIST CARDS */
+.form-card,
+.list-card {
+    -fx-background-color: #17223C;
+    -fx-background-radius: 16px;
+    -fx-border-color: #2B3B60;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1px;
+    -fx-padding: 15px;
+}
+.card-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F3F5FF;
+}
+.card-description {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9EAFD1;
+}
+.form-badge {
+    -fx-background-color: #263B75;
+    -fx-background-radius: 15px;
+    -fx-padding: 6px 10px;
+    -fx-text-fill: #D6E0FF;
+    -fx-font-size: 10px;
+}
+
+/* FIELD LABELS AND INPUTS */
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #BDCAE6;
+}
+.input-field {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+    -fx-border-color: #344568;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #F1F4FF;
+    -fx-prompt-text-fill: #8293B8;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-padding: 9px 11px;
+}
+.input-field:focused {
+    -fx-border-color: #7890FF;
+    -fx-border-width: 1.4px;
+}
+
+/* COMBO BOX */
+.combo-box.input-field {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+    -fx-border-color: #344568;
+    -fx-border-radius: 10px;
+}
+.combo-box .list-cell {
+    -fx-text-fill: #F1F4FF;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: #1B2946;
+    -fx-border-color: #40547C;
+}
+.combo-box-popup .list-cell {
+    -fx-background-color: #1B2946;
+    -fx-text-fill: #E7EDFF;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #354C83;
+}
+
+/* DATE PICKER */
+.date-picker {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+    -fx-border-color: #344568;
+    -fx-border-radius: 10px;
+}
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #8293B8;
+    -fx-font-size: 12px;
+}
+.date-picker .arrow-button {
+    -fx-background-color: #26395E;
+    -fx-background-radius: 0 9px 9px 0;
+}
+.date-picker-popup {
+    -fx-background-color: #17233F;
+    -fx-border-color: #40547C;
+}
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #202F50;
+}
+.date-picker-popup .label {
+    -fx-text-fill: #F1F4FF;
+}
+.date-picker-popup .calendar-grid {
+    -fx-background-color: #17233F;
+}
+.date-picker-popup .day-cell {
+    -fx-background-color: #17233F;
+    -fx-text-fill: #E1E8FA;
+}
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #354C83;
+}
+.date-picker-popup .selected {
+    -fx-background-color: #526DE0;
+    -fx-text-fill: white;
+}
+
+/* NOTES */
+.notes-field {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+    -fx-border-color: #344568;
+    -fx-border-radius: 10px;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #8293B8;
+    -fx-font-size: 12px;
+}
+.notes-field .content {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+}
+
+/* ATTACHMENTS */
+.attachment-box {
+    -fx-background-color: #101B34;
+    -fx-background-radius: 10px;
+    -fx-border-color: #344568;
+    -fx-border-radius: 10px;
+    -fx-border-style: dashed;
+    -fx-padding: 9px;
+}
+.attachment-hint {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8798BA;
+}
+.button.ghost-button {
+    -fx-background-color: #26375B;
+    -fx-background-radius: 9px;
+    -fx-border-color: #455B8A;
+    -fx-border-radius: 9px;
+    -fx-text-fill: #DCE5FF;
+    -fx-font-size: 11px;
+    -fx-padding: 8px 12px;
+}
+.button.ghost-button:hover {
+    -fx-background-color: #354C7D;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    -fx-padding: 5px 0 0 0;
+}
+.button.primary-button {
+    -fx-background-color: linear-gradient(to right, #4269ED, #8052D9);
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+}
+.button.primary-button:hover {
+    -fx-background-color: #7188FF;
+}
+.button.secondary-button {
+    -fx-background-color: #263653;
+    -fx-background-radius: 10px;
+    -fx-border-color: #405477;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #D3DDF2;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 18px;
+}
+.button.secondary-button:hover {
+    -fx-background-color: #34486F;
+}
+
+/* EMPTY TASK LIST */
+.empty-tasks {
+    -fx-background-color: #111B32;
+    -fx-background-radius: 12px;
+    -fx-padding: 19px;
+}
+.empty-icon {
+    -fx-font-size: 23px;
+    -fx-text-fill: #7188CC;
+}
+.empty-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #DCE5FA;
+}
+
+
+/* Additional fallback selectors for JavaFX skin internals */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
+}
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: rgba(120, 145, 195, 0.10);
+    -fx-background-radius: 8px;
+}
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #465B8B;
+    -fx-background-radius: 8px;
+}
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7187C4;
+}
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+.scroll-pane .scroll-bar:vertical .increment-arrow,
+.scroll-pane .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}

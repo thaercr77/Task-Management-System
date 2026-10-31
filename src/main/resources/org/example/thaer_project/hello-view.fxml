@@ -1,0 +1,262 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.thaer_project.HelloController"
+        styleClass="app-background">
+
+    <BorderPane
+            prefWidth="1000"
+            prefHeight="680"
+            minWidth="950"
+            minHeight="640"
+            maxWidth="1000"
+            maxHeight="680"
+            styleClass="app-shell">
+
+        <!-- SIDEBAR -->
+        <left>
+            <VBox
+                    prefWidth="248"
+                    minWidth="248"
+                    maxWidth="248"
+                    spacing="13"
+                    styleClass="sidebar"
+                    nodeOrientation="RIGHT_TO_LEFT">
+
+                <VBox spacing="3" styleClass="brand-block">
+                    <Label text="StudyFlow" styleClass="brand-title"/>
+                    <Label text="مساحة تنظيم المذاكرة" styleClass="brand-subtitle"/>
+                </VBox>
+
+                <Label text="قائمة التنقل" styleClass="sidebar-caption"/>
+
+                <ScrollPane
+                        fitToWidth="true"
+                        hbarPolicy="NEVER"
+                        vbarPolicy="AS_NEEDED"
+                        styleClass="nav-scroll"
+                        VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox spacing="11" styleClass="nav-list"
+                              nodeOrientation="RIGHT_TO_LEFT">
+
+                            <VBox spacing="7" styleClass="nav-group">
+                                <Label text="الرئيسية" styleClass="nav-group-title"/>
+                                <Button text="⌂    لوحة التحكم"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                            </VBox>
+
+                            <VBox spacing="7" styleClass="nav-group">
+                                <Label text="إدارة الدراسة" styleClass="nav-group-title"/>
+                                <Button text="♙    إدارة المستخدمين"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                                <Button text="▤    المواد والمناهج"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                                <Button text="▦    جدول المحاضرات"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                                <Button id="selectedTaskNav"
+                                        text="✓    المهام والتكليفات"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button nav-selected"
+                                        style="-fx-background-color: linear-gradient(to right, #4168E8, #7952D8); -fx-background-insets: 0; -fx-background-radius: 11px; -fx-border-color: #91A5FF; -fx-border-width: 1px; -fx-border-radius: 11px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                <Button text="◷    جلسات المذاكرة"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                            </VBox>
+
+                            <VBox spacing="7" styleClass="nav-group">
+                                <Label text="التركيز والتقييم" styleClass="nav-group-title"/>
+                                <Button text="◴    مؤقت التركيز"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                                <Button text="▥    التقييم والدرجات"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                            </VBox>
+
+                            <VBox spacing="7" styleClass="nav-group">
+                                <Label text="التقارير" styleClass="nav-group-title"/>
+                                <Button text="▧    التقارير والإحصائيات"
+                                        maxWidth="Infinity"
+                                        styleClass="nav-button"/>
+                            </VBox>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <VBox spacing="8" styleClass="sidebar-footer">
+                    <Label text="حساب الطالب" styleClass="footer-account"/>
+                    <Button text="↪    تسجيل الخروج"
+                            maxWidth="Infinity"
+                            styleClass="logout-button"/>
+                </VBox>
+            </VBox>
+        </left>
+
+        <!-- TASK MANAGER -->
+        <center>
+            <VBox spacing="13"
+                  styleClass="content-area"
+                  nodeOrientation="RIGHT_TO_LEFT">
+
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="page-header">
+                    <VBox spacing="4">
+                        <Label text="إدارة المهام والتكليفات" styleClass="page-title"/>
+                        <Label text="سجّل واجباتك ومشروعاتك وتابع مواعيد التسليم"
+                               styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="TASK MANAGER" styleClass="header-chip"/>
+                </HBox>
+
+                <ScrollPane fitToWidth="true"
+                            hbarPolicy="NEVER"
+                            vbarPolicy="AS_NEEDED"
+                            styleClass="page-scroll"
+                            VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox spacing="14"
+                              styleClass="page-body"
+                              nodeOrientation="RIGHT_TO_LEFT">
+
+                            <VBox spacing="13" styleClass="form-card">
+                                <HBox alignment="CENTER_LEFT">
+                                    <VBox spacing="4">
+                                        <Label text="بيانات المهمة الجديدة" styleClass="card-title"/>
+                                        <Label text="أدخل بيانات المهمة وحدد موعدها وأولويتها"
+                                               styleClass="card-description"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="مهمة جديدة" styleClass="form-badge"/>
+                                </HBox>
+
+                                <GridPane hgap="13" vgap="12" styleClass="form-grid">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                    </columnConstraints>
+
+                                    <!-- SUBJECT -->
+                                    <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                        <Label text="المادة الدراسية" styleClass="field-label"/>
+                                        <ComboBox maxWidth="Infinity"
+                                                  promptText="اختر المادة الدراسية"
+                                                  styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- TITLE -->
+                                    <VBox spacing="6" GridPane.columnIndex="0"
+                                          GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                        <Label text="عنوان المهمة أو التكليف" styleClass="field-label"/>
+                                        <TextField promptText="مثال: حل واجب الفصل الثالث"
+                                                   styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- TYPE -->
+                                    <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                        <Label text="نوع المهمة" styleClass="field-label"/>
+                                        <ComboBox maxWidth="Infinity"
+                                                  promptText="اختر نوع المهمة"
+                                                  styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- PRIORITY -->
+                                    <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                        <Label text="الأولوية" styleClass="field-label"/>
+                                        <ComboBox maxWidth="Infinity"
+                                                  promptText="اختر درجة الأولوية"
+                                                  styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- DEADLINE DATE -->
+                                    <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                        <Label text="تاريخ التسليم أو الامتحان" styleClass="field-label"/>
+                                        <DatePicker promptText="حدد التاريخ"
+                                                    maxWidth="Infinity"
+                                                    styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- DEADLINE TIME -->
+                                    <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                        <Label text="وقت التسليم أو الامتحان" styleClass="field-label"/>
+                                        <TextField promptText="مثال: 11:30 مساءً"
+                                                   styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- STATUS -->
+                                    <VBox spacing="6" GridPane.columnIndex="0"
+                                          GridPane.columnSpan="2" GridPane.rowIndex="4">
+                                        <Label text="حالة المهمة" styleClass="field-label"/>
+                                        <ComboBox maxWidth="Infinity"
+                                                  promptText="اختر حالة المهمة"
+                                                  styleClass="input-field"/>
+                                    </VBox>
+
+                                    <!-- NOTES -->
+                                    <VBox spacing="6" GridPane.columnIndex="0"
+                                          GridPane.columnSpan="2" GridPane.rowIndex="5">
+                                        <Label text="الملاحظات" styleClass="field-label"/>
+                                        <TextArea promptText="اكتب أي ملاحظات أو تفاصيل إضافية..."
+                                                  prefRowCount="3"
+                                                  wrapText="true"
+                                                  styleClass="notes-field"/>
+                                    </VBox>
+
+                                    <!-- ATTACHMENT -->
+                                    <VBox spacing="7" GridPane.columnIndex="0"
+                                          GridPane.columnSpan="2" GridPane.rowIndex="6">
+                                        <Label text="الملفات المرجعية" styleClass="field-label"/>
+                                        <HBox spacing="10" alignment="CENTER_RIGHT"
+                                              styleClass="attachment-box">
+                                            <Button text="＋ اختيار ملف" styleClass="ghost-button"/>
+                                            <Label text="لم يتم اختيار ملف" styleClass="attachment-hint"/>
+                                        </HBox>
+                                    </VBox>
+                                </GridPane>
+
+                                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="form-actions">
+                                    <Button text="حفظ المهمة" styleClass="primary-button"/>
+                                    <Button text="مسح الحقول" styleClass="secondary-button"/>
+                                </HBox>
+                            </VBox>
+
+                            <VBox spacing="12" styleClass="list-card">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="المهام المسجلة" styleClass="card-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="0 مهمة" styleClass="form-badge"/>
+                                </HBox>
+                                <VBox alignment="CENTER" spacing="7" styleClass="empty-tasks">
+                                    <Label text="▤" styleClass="empty-icon"/>
+                                    <Label text="لا توجد مهام مسجلة حتى الآن" styleClass="empty-title"/>
+                                    <Label text="أضف أول مهمة لتبدأ متابعة واجباتك ومواعيدك."
+                                           styleClass="card-description"/>
+                                </VBox>
+                            </VBox>
+
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </VBox>
+        </center>
+    </BorderPane>
+</StackPane>
